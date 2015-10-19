@@ -7,9 +7,7 @@ var uglify = require('gulp-uglify');
 var concat = require('gulp-concat');
 var imagemin = require('gulp-imagemin');
 var sourcemaps = require('gulp-sourcemaps');
-var del = require('del');
-
-
+var del = require('delete');
 
 var paths = {
   scripts: ['src/js/**/*.js'],
@@ -17,7 +15,6 @@ var paths = {
 };
 
 gulp.task('clean', function() {
-	del(['tmp/**/*']);
 
 });
 
