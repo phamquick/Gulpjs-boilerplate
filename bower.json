@@ -1,0 +1,9 @@
+{
+  "name": "my-app",
+  "dependencies": {},
+  "devDependencies": {
+    "angular-material": "~0.11.4",
+    "angular": "~1.4.7",
+    "angular-route": "~1.4.7"
+  }
+}

@@ -1,20 +1,44 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" ng-app="App">
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
     <!-- build:css css/app.css -->
     <link rel="stylesheet" href="css/app.css">
-
+    <link rel="stylesheet" href="plugins/angularjs/loading-bar/loading-bar.css">
     <!-- endbuild -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/0.9.4/angular-material.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=RobotoDraft:300,400,500,700,400italic">
+    <meta name="viewport" content="initial-scale=1" />
 
+    
 </head>
 <body>
 
-<!-- build:js js/app.js -->
-<script type="application/javascript" src="js/jquery-1.11.3.js"></script>
-<script type="application/javascript" src="../node_modules/bootstrap-sass/assets/javascripts/bootstrap.js"></script>
-<!-- endbuild -->
+<div ng-view></div>
+<!-- Jquery 1.11.3 -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<!-- Bootstrap 3.3.5 -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<!-- Angularjs 1.4.7 -->
 
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-route.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-animate.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-aria.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angular_material/0.11.4/angular-material.min.js"></script>
+
+<!-- build:js js/app.js -->
+<script type="text/javascript" src="plugins/angularjs/loading-bar/loading-bar.js"></script>
+<!-- Our Website Javascripts -->
+<script type="text/javascript" src="js/app.js"></script>
+<script type="text/javascript" src="js/main.js"></script>
+<script type="text/javascript" src="js/controllers.js"></script>
+<script type="text/javascript" src="js/services.js"></script>
+<script type="text/javascript" src="js/directives.js"></script>
+<script type="text/javascript" src="js/filters.js"></script>
+
+<!-- endbuild -->
 </body>
 </html>

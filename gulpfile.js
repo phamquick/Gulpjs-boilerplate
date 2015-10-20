@@ -33,9 +33,9 @@ gulp.task('html', function () {
         spare: true
     };
 
-    return gulp.src('src/*.html')
+    return gulp.src('src/**/*.html')
         .pipe(assets)
-        .pipe(gulpif('*.js', uglify()))
+        //.pipe(gulpif('*.js', uglify()))
         .pipe(gulpif('*.css', minifyCss()))
         .pipe(assets.restore())
         .pipe(useref())
