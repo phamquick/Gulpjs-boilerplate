@@ -1,51 +1,48 @@
 'use strict';
 
-var gulp = require('gulp');
-var sass = require('gulp-sass');
+var gulp = require('gulp'),
+    sass = require('gulp-sass'),
+    useref = require('gulp-useref'),
+    gulpif = require('gulp-if'),
+    minifyCss = require('gulp-minify-css'),
+    minifyHTML = require('gulp-minify-html'),
+    uglify = require('gulp-uglify'),
+    imagemin = require('gulp-imagemin'),
+    sourcemaps = require('gulp-sourcemaps'),
+    del = require('del'),
+    notify = require("gulp-notify");
 
-var uglify = require('gulp-uglify');
-var concat = require('gulp-concat');
-var imagemin = require('gulp-imagemin');
-var sourcemaps = require('gulp-sourcemaps');
-var del = require('del');
 
-
-
-var paths = {
-  scripts: ['src/js/**/*.js'],
-  images: 'src/img/**/*'
-};
-
-gulp.task('clean', function() {
-	del(['tmp/**/*']);
-
+gulp.task('clean', function () {
+    del(['dist/**/*']);
 });
 
-
-var gulp = require('gulp');
-var sass = require('gulp-sass');
- 
 gulp.task('sass', function () {
-  gulp.src('./src/sass/**/*.scss')
-  	.pipe(sourcemaps.init())
-    	.pipe(sass().on('error', sass.logError))
-    	.pipe(sass({outputStyle: 'compressed'}))
-    .pipe(sourcemaps.write('./maps'))
-    .pipe(gulp.dest('./dist/css'));
-});
- 
-gulp.task('sass:watch', function () {
-  gulp.watch('./src/sass/**/*.scss', ['sass']);
-});
-//
-
-gulp.task('jscompress', function() {
-  return gulp.src('./src/js/**/*.js')
-    .pipe(uglify())
-    .pipe(gulp.dest('./dist/js'));
+    gulp.src('./src/sass/**/*.scss')
+        .pipe(sourcemaps.init())
+        .pipe(sass().on('error', sass.logError))
+        .pipe(sass({outputStyle: 'compressed'}))
+        .pipe(sourcemaps.write('./maps'))
+        .pipe(gulp.dest('./src/css'));
 });
 
+gulp.task('html', function () {
+    var assets = useref.assets();
+    var opts = {
+        conditionals: true,
+        spare: true
+    };
 
+    return gulp.src('src/*.html')
+        .pipe(assets)
+        .pipe(gulpif('*.js', uglify()))
+        .pipe(gulpif('*.css', minifyCss()))
+        .pipe(assets.restore())
+        .pipe(useref())
+        .pipe(minifyHTML(opts))
+        .pipe(gulp.dest('dist'))
+        .pipe(notify("Done!"));
+});
 
 // The default task (called when you run `gulp` from cli)
-gulp.task('default', ['clean','sass','jscompress']);
+gulp.task('default', ['clean', 'sass', 'html']);
